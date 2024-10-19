@@ -8,7 +8,6 @@
 </template>
 
 <script setup>
-
 let audio;
 const isPlaying = ref(false)
 const audioSrc = "http://pub0201.101.ru:8000/stream/air/aac/64/99?1d98"
