@@ -1,5 +1,7 @@
 {
   "name": "vova-player",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "vue"
 }
