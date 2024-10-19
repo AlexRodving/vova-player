@@ -1,10 +1,12 @@
 <template>
-    <main>
-        <div class="play-button" :class="{ playing: isPlaying }" @click="playButton">
-            <span v-show="!isPlaying" class="text-icon play">Play</span>
-            <span v-show="isPlaying" class="text-icon pause">Pause</span>
-        </div>
-    </main>
+    <ion-page>
+        <main>
+            <div class="play-button" :class="{ playing: isPlaying }" @click="playButton">
+                <span v-show="!isPlaying" class="text-icon play">Play</span>
+                <span v-show="isPlaying" class="text-icon pause">Pause</span>
+            </div>
+        </main>
+    </ion-page>
 </template>
 
 <script setup>
