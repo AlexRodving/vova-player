@@ -1,23 +1,32 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
+# Specifies intentionally untracked files to ignore when using Git
+# http://git-scm.com/docs/gitignore
 
-# Node dependencies
-node_modules
-
-# Logs
-logs
-*.log
-
-# Misc
+*~
+*.sw[mnpcod]
+.tmp
+*.tmp
+*.tmp.*
+*.sublime-project
+*.sublime-workspace
 .DS_Store
-.fleet
-.idea
+Thumbs.db
+UserInterfaceState.xcuserstate
+$RECYCLE.BIN/
 
-# Local env files
-.env
-.env.*
-!.env.example
+*.log
+log.txt
+npm-debug.log*
+
+/.idea
+/.ionic
+/.sass-cache
+/.sourcemaps
+/.versions
+/.vscode/*
+!/.vscode/extensions.json
+/coverage
+/dist
+/node_modules
+/platforms
+/plugins
+/www
