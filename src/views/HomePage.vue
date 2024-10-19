@@ -13,6 +13,7 @@
                 <span v-show="isPlaying" class="text-icon pause">Pause</span>
             </div>
       </main>
+      <audio ref="audiRef" :src="audioSrc"></audio>
     </ion-content>
   </ion-page>
 </template>
@@ -21,19 +22,21 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import { ref, onMounted } from 'vue';
 
-let audio;
+// let audio;
+const audiRef = ref(null)
 const isPlaying = ref(false)
 const audioSrc = "http://pub0201.101.ru:8000/stream/air/aac/64/99?1d98"
+// audio = new Audio(audioSrc);
+// onMounted(() => {
+//     audio = new Audio(audioSrc);
 
-onMounted(() => {
-    audio = new Audio(audioSrc);
-
-    audio.addEventListener('ended', () => {
-        isPlaying.value = false;
-    });
-})
+//     audio.addEventListener('ended', () => {
+//         isPlaying.value = false;
+//     });
+// })
 
 const playButton = () => {
+    const audio = audiRef.value
     if(audio.paused){
         audio.play();
         isPlaying.value = true;
