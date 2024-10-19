@@ -20,31 +20,47 @@
 
 <script setup>
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
-import { ref, onMounted } from 'vue';
+import { ref, onBeforeUnmount } from 'vue';
+import { MediaPlayer } from '@capacitor-community/media-player';
 
-// let audio;
-const audiRef = ref(null)
-const isPlaying = ref(false)
-const audioSrc = "http://pub0201.101.ru:8000/stream/air/aac/64/99?1d98"
-// audio = new Audio(audioSrc);
-// onMounted(() => {
-//     audio = new Audio(audioSrc);
+const isPlaying = ref(false);
+let mediaPlayer = null;
 
-//     audio.addEventListener('ended', () => {
-//         isPlaying.value = false;
-//     });
-// })
+// URL аудиофайла
+const audioSrc = "http://pub0201.101.ru:8000/stream/air/aac/64/99?1d98";
 
-const playButton = () => {
-    const audio = audiRef.value
-    if(audio.paused){
-        audio.play();
-        isPlaying.value = true;
-    }else{
-        audio.pause();
-        isPlaying.value = false;
-    }
+// Функция для управления воспроизведением
+const playButton = async () => {
+  if (!mediaPlayer) {
+    // Инициализируем плеер
+    mediaPlayer = await MediaPlayer.create({
+      url: audioSrc,
+    });
+
+    // Добавляем обработчик события окончания трека
+    mediaPlayer.addListener('ended', () => {
+      isPlaying.value = false;
+    });
+  }
+
+  if (!isPlaying.value) {
+    // Запускаем аудио
+    await mediaPlayer.play();
+    isPlaying.value = true;
+  } else {
+    // Ставим на паузу
+    await mediaPlayer.pause();
+    isPlaying.value = false;
+  }
 };
+
+// Очищаем плеер при размонтировании компонента
+onBeforeUnmount(() => {
+  if (mediaPlayer) {
+    mediaPlayer.stop();
+    mediaPlayer = null;
+  }
+});
 
 </script>
 
